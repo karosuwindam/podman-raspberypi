@@ -1,11 +1,11 @@
 # AnsibleでPodman実行環境をRaspberryPi 4上に展開する。
 
 
-以下のコマンドを実行して置く
+以下のコマンドを実行してansibleのインストールと、ssh-keyを使用して、接続できるようにしておく
 ```
-sudo apt install ansible
+sudo apt install -y ansible
 ssh-keygen
-ssh-id-copy localhost
+ssh-copy-id localhost
 ```
 
 
