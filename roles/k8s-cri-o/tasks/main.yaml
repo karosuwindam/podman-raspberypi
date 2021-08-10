@@ -32,6 +32,8 @@
 # sudo dphys-swapfile swapoff
 # sudo systemctl stop dphys-swapfile
 # sudo systemctl disable dphys-swapfile
+- name: cmdline COPY
+  template: src=templates/cmdline.txt dest=/boot/cmdline.txt
 - name: SWAP OFF
   # command: swapoff -a
   command: dphys-swapfile swapoff
