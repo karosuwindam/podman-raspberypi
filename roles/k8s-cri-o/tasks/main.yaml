@@ -9,24 +9,32 @@
   apt_repository: 
     repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
     state: present
-- name: kubeadmのインストール
+- name: kubeコマンドインストール
   apt:
-    name: kubeadm
-    state: latest
+    name:
+      - kubeadm=1.21.3-00
+      - kubelet=1.21.3-00
+      - kubectl=1.21.3-00
     update_cache: true
     cache_valid_time: 3600
-- name: kubeletのインストール
-  apt:
-    name: kubelet
-    state: latest
-    update_cache: true
-    cache_valid_time: 3600
-- name: kubectlのインストール
-  apt:
-    name: kubectl
-    state: latest
-    update_cache: true
-    cache_valid_time: 3600
+# - name: kubeadmのインストール
+#   apt:
+#     name: kubeadm=1.21.3-00
+#     state: latest
+#     update_cache: true
+#     cache_valid_time: 3600
+# - name: kubeletのインストール
+#   apt:
+#     name: kubelet=1.21.3-00
+#     state: latest
+#     update_cache: true
+#     cache_valid_time: 3600
+# - name: kubectlのインストール
+#   apt:
+#     name: kubectl=1.21.3-00
+#     state: latest
+#     update_cache: true
+#     cache_valid_time: 3600
 - name: kubeletのcri-o設定
   template: src=templates/kubelet dest=/etc/default/kubelet
 # sudo dphys-swapfile swapoff
