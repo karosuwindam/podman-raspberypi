@@ -43,7 +43,7 @@
   service:
     name: crio
     enabled: yes
-    state: started
+    # state: started
 # - name: Add the overlay module
 #   community.general.modprobe:
 #     name: overlay

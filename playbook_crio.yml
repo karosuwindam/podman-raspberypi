@@ -3,11 +3,11 @@
   become: true
   roles:
     - role: aptupdate
-# k8sのインストール
+# podmanのインストール
 - hosts: all
   become: true
-  # vars:
-  #   os: Debian_10
-  #   version: "1.21"
+  vars:
+    os: Debian_10
+    version: "1.21"
   roles:
-    - role: k8s-cri-o
+    - role: cri-o
