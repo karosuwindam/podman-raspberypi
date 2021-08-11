@@ -18,7 +18,11 @@ sudo sysctl --system
 Kuberentesのapt-keyを登録する
 ```
 curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg|sudo apt-key add -
-$ echo "deb https://apt.kubernetes.io/ kubernetes-xenial
+```
+
+リポジトリの登録
+```
+echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kube.list
 ```
 
 以下のコマンドで、kuberentesの3コマンド、kubeadmとkubelet、kubectlをインストールする。なお、バージョンは1.21を指定する
@@ -34,7 +38,7 @@ sudo wget -O /etc/default/kubelet https://gist.githubusercontent.com/haircommand
 
 cmdline.txtをkkubernetesが起動できるように書き換える
 ```
-sudo sh -c "echo ' cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1' >> /boot/cmdline.txt"
+sudo sh -c "echo 'console=serial0,115200 console=tty1 root=PARTUUID=48bdd2cf-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait quiet splash plymouth.ignore-serial-consoles cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1' > /boot/cmdline.txt"
 ```
 
 SWAPをOFFにする
@@ -45,10 +49,6 @@ sudo systemctl disable dphys-swapfile
 ```
 
 再起動後、以下のコマンドで、初期化できることを確認する
-複数のマスター制御
-```
-sudo kubeadm init --control-plane-endpoint --pod-network-cidr=10.244.0.0/16
-```
 
 単数のマスター制御
 ```

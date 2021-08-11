@@ -28,13 +28,13 @@ version="1.21"
 以下のコマンドで、レポジトリを登録する
 ```
 echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$os/ /" | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
-echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$version/$os/ /" | sudo tee  /etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list
+echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$version/$os/ /" | sudo tee  /etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$version.list
 ```
 
 apt-keyの追加
 ```
-curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key |sudo  apt-key add -
-curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | sudo apt-key add -
+curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$version/$os/Release.key |sudo  apt-key add -
+curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$os/Release.key | sudo apt-key add -
 ```
 
 以下のコマンドで、cri-oとcri-orunc、cri-toolsをインストールする
