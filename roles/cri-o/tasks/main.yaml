@@ -24,21 +24,24 @@
     state: latest
     default_release: buster-backports
     update_cache: yes
-- name: cri-oのインストール
+- name: cri-o cri-o runc cri-toolsのインストール
   apt:
-    name: cri-o
+    name:
+      - cri-o
+      - cri-o-runc
+      - cri-tools
     state: latest
     update_cache: yes
-- name: cri-oのインストール
-  apt:
-    name: cri-o-runc
-    state: latest
-    update_cache: yes
-- name: cri-toolsのインストール
-  apt:
-    name: cri-tools
-    state: latest
-    update_cache: yes
+# - name: cri-oのインストール
+#   apt:
+#     name: cri-o-runc
+#     state: latest
+#     update_cache: yes
+# - name: cri-toolsのインストール
+#   apt:
+#     name: cri-tools
+#     state: latest
+#     update_cache: yes
 - name: crio自動起動登録
   service:
     name: crio
