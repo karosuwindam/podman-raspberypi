@@ -1,1 +1,0 @@
-console=serial0,115200 console=tty1 root=PARTUUID=58a092f0-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait quiet splash plymouth.ignore-serial-consoles cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1

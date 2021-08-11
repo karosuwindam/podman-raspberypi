@@ -1,0 +1,5 @@
+# podmanのインストール
+- hosts: all
+  become: true
+  roles:
+    - role: cmdline

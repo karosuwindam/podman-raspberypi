@@ -36,9 +36,11 @@ cri-o用のkubeletの設定を行う
 sudo wget -O /etc/default/kubelet https://gist.githubusercontent.com/haircommander/2c07cc23887fa7c7f083dc61c7ef5791/raw/73e3d27dcd57e7de237c08758f76e0a368547648/cri-o-kubeadm
 ```
 
-cmdline.txtをkkubernetesが起動できるように書き換える
+cmdline.txtをkkubernetesが起動できるように追加する
+なお、rootのIDがカードごとに、異なるため変更する際には注意が必要
 ```
 sudo sh -c "echo 'console=serial0,115200 console=tty1 root=PARTUUID=48bdd2cf-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait quiet splash plymouth.ignore-serial-consoles cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1' > /boot/cmdline.txt"
+ cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1
 ```
 
 SWAPをOFFにする
