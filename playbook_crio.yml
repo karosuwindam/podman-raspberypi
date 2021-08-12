@@ -11,3 +11,7 @@
     version: "1.21"
   roles:
     - role: cri-o
+- hosts: all
+  become: true
+  roles:
+    - role: reboot
