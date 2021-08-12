@@ -1,0 +1,17 @@
+# update upgrade
+- hosts: all
+  become: true
+  roles:
+    - role: aptupdate
+# podmanのインストール
+- hosts: all
+  become: true
+  vars:
+    os: Debian_10
+    version: "1.21"
+  roles:
+    - role: cri-o
+- hosts: all
+  become: true
+  roles:
+    - role: reboot

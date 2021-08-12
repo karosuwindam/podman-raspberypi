@@ -1,0 +1,41 @@
+- name: sources.listの更新
+  template: src=templates/sources.list dest=/etc/apt/sources.list #mode=0644
+- name: podmanのapt-key
+  apt_key:
+    url: https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:{{version}}/{{os}}/Release.key
+    state: present
+- name: cri-o runcのapt-key
+  apt_key:
+    url: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/{{os}}/Release.key
+    state: present
+- name: podmanの追加
+  apt_repository: 
+    repo: "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/{{os}}/ /"
+    state: present
+    filename: devel:kubic:libcontainers:stable.list
+- name: cri-o runcの追加
+  apt_repository: 
+    repo: deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/{{version}}/{{os}}/ /
+    state: present
+    filename: devel:kubic:libcontainers:stable:cri-o:{{version}}.list
+- name: libseccomp2のインストール
+  apt:
+    name: libseccomp2
+    state: latest
+    default_release: buster-backports
+    update_cache: yes
+- name: cri-o cri-o runc cri-toolsのインストール
+  apt:
+    name:
+      - cri-o
+      - cri-o-runc
+      - cri-tools
+    state: latest
+    update_cache: yes
+- name: crio自動起動登録
+  service:
+    name: crio
+    enabled: yes
+- name: モジュール登録
+  template: src=templates/k8s.conf dest=/etc/modules-load.d/k8s.conf
+# - reboot:
